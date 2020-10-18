@@ -1,6 +1,7 @@
 import { observable, action } from 'mobx';
 import {createContext} from "react";
 import axios from 'axios'
+//import { actionFieldDecorator } from 'mobx/lib/internal';
 class PostStore{
   @observable posts = {};
   static instance = null;
@@ -18,6 +19,13 @@ class PostStore{
     const result = await axios.get(
         `/api/post/all`
     ).catch(error => {return null });
+    return result === null ? null : result.data
+  }
+  @action 
+  async search(category, input){
+    const result = await axios.get(
+      // something
+    ).catch(error => {return null});
     return result === null ? null : result.data
   }
 }

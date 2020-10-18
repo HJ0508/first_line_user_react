@@ -17,6 +17,7 @@ import Link from '@material-ui/core/Link';
 import AccountButton from '../components/common/AccountButton'
 import SignInPopOver from "../components/member/SignInPopOver"
 import UserInfoPopOver from "../components/member/UserInfoPopOver"
+import SearchSpace from '../components/common/SearchSpace';
 
 const meta = document.createElement('meta');
     meta.name = "viewport";
@@ -93,6 +94,9 @@ function UserHomeLayout(props){
                     </IconButton>
                     <div className={classes.title}>
                          첫 줄
+                    </div>
+                    <div>
+                        <SearchSpace></SearchSpace>
                     </div>
                     <div alignSelf="flex-end" style={{marginRight:'2%'}}>
                         { authInfo === null ? 

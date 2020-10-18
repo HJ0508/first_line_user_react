@@ -84,9 +84,7 @@ const UserPostView = observer( (props) => {
                 ))
               )
           }
-
           </Grid>
-
           </div>
       )
   }
