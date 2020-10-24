@@ -1,10 +1,12 @@
 import React, {useState, useEffect, Component, useRef} from 'react'
-import { makeStyles } from '@material-ui/core/styles';
+import { IconButton, makeStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button'
 import TextEditor from './TextEditor'
+import { CenterFocusStrong } from '@material-ui/icons';
+import TelegramIcon from '@material-ui/icons/Telegram';
 
 const useStyles = makeStyles({
     root: {
@@ -14,18 +16,20 @@ const useStyles = makeStyles({
       gridContainer:{
           marginTop : "2%",
       },
-      editor:{
+      title:{
           color : 'black',
           background : 'white',
-          width : '50%',
+          width : '100%',
           height : '30%',
-          borderRadius: '6px'
+          borderRadius: '0.3em 0.3em 0 0',
+          textAlign: 'center',
       } 
       ,keyword:{
           color : '#ffeb3b',
           marginBottom:'2%',
           fontSize: 20
       },textEditor:{
+          margin: '0%',
           width: '40%'
       },button:{
           color: '#ffeb3b',
@@ -56,18 +60,23 @@ export default function PostEditor(){
                     id="standard-textarea"
                     placeholder="제목을 입력해주세요"
                     multiline
-                    className={classes.editor}
+                    className={classes.title}
                     inputRef={title}
+                    inputProps={{
+                        style: { textAlign: "center" }
+                      }}
                     />
                 </Grid>
                 <Grid direction="row">
                     <Grid><TextEditor className={classes.textEditor} inputRef={text}></TextEditor></Grid>
                     <Grid>
-                        <Button
-                            className={classes.button}
-                            type="submit"
-                            onClick={addPost}
-                        >발행</Button>
+                        <IconButton>
+                            <TelegramIcon 
+                                className={classes.button}
+                                type="submit"
+                                onClick={addPost}
+                                fontSize="large"/>
+                        </IconButton>
                     </Grid>
                 </Grid>
             </Grid>
