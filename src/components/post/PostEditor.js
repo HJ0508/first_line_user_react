@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Component, useRef} from 'react'
+import React, {useState, useEffect, Component, useRef, useContext} from 'react'
 import { IconButton, makeStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button'
 import TextEditor from './TextEditor'
 import { CenterFocusStrong } from '@material-ui/icons';
 import TelegramIcon from '@material-ui/icons/Telegram';
+import KeywordStore from '../../stores/KeywordStore';
 
 const useStyles = makeStyles({
     root: {
@@ -41,6 +42,17 @@ export default function PostEditor(){
     const classes = useStyles();
     const title = useRef();
     const text = useRef();
+    const [keyword, setKeyword] = useState({ keywords: [] });
+    const keywordStore = useContext(KeywordStore.context)
+    useEffect(() => {
+        async function fetchData() {
+            const result = await keywordStore.readTodayKeyword()
+            if (result != null)
+                setKeyword(result)
+        }
+        fetchData()
+        }
+    ,[]);
 
     const addPost = () => {
         if (postStore.addPost(title.current.value, text.current.value)){
@@ -54,7 +66,7 @@ export default function PostEditor(){
     return(
         <div className={classes.root}>
             <Grid Container spacing={5} className={classes.gridContainer} direction="column" align="center">
-                <Grid item xs = {12} className={classes.keyword}> <label>Keyword: 첫줄(테스트)</label></Grid>
+            <Grid item xs = {12} className={classes.keyword}> <label>Keyword:{keyword.keyword}</label></Grid>
                 <Grid item xs ={12}  direction="column">
                     <TextField 
                     id="standard-textarea"

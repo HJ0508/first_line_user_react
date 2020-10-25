@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import { Editor, EditorState, RichUtils, AtomicBlockUtils } from "draft-js";
 import { IconButton, makeStyles } from '@material-ui/core'
 import UndoIcon from '@material-ui/icons/Undo';
